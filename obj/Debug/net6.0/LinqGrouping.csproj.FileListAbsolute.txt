@@ -1,0 +1,15 @@
+C:\Users\kowus\source\Repos\LinqGrouping\bin\Debug\net6.0\LinqGrouping.exe
+C:\Users\kowus\source\Repos\LinqGrouping\bin\Debug\net6.0\LinqGrouping.deps.json
+C:\Users\kowus\source\Repos\LinqGrouping\bin\Debug\net6.0\LinqGrouping.runtimeconfig.json
+C:\Users\kowus\source\Repos\LinqGrouping\bin\Debug\net6.0\LinqGrouping.dll
+C:\Users\kowus\source\Repos\LinqGrouping\bin\Debug\net6.0\LinqGrouping.pdb
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.csproj.AssemblyReference.cache
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.AssemblyInfoInputs.cache
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.AssemblyInfo.cs
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.csproj.CoreCompileInputs.cache
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.dll
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\refint\LinqGrouping.dll
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.pdb
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\LinqGrouping.genruntimeconfig.cache
+C:\Users\kowus\source\Repos\LinqGrouping\obj\Debug\net6.0\ref\LinqGrouping.dll
