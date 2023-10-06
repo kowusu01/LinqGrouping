@@ -77,38 +77,40 @@ var lineItems = new List<LineItem>
 /////////////////////////////////////////////////////////////////////////
 
 // group orders by product category
+Console.WriteLine("--------------------------------------------------");
+Console.WriteLine("Linq using query syntax");
+Console.WriteLine("--------------------------------------------------");
 
-var invoice1 = from d in lineItems
+var invoiceByCategory = from d in lineItems
 
-                   // 1. first perform necessary joins
-               join o in orders on d.OrderId equals o.OrderId
-               join c in customers on o.CustomerId equals c.CustomerId
+                            // 1. first perform necessary joins
+                        join o in orders on d.OrderId equals o.OrderId
+                        join c in customers on o.CustomerId equals c.CustomerId
 
-               // 2. select the fields you want to be in the details
-               select
-                new
-                {
-                    o.OrderId,
-                    ProductCategory = d.Category,
-                    ItemName = d.Item,
-                    CustomerName = c.Name
-                } into details
+                        // 2. select the fields you want to be in the details
+                        select
+                         new
+                         {
+                             o.OrderId,
+                             ProductCategory = d.Category,
+                             ItemName = d.Item,
+                             CustomerName = c.Name
+                         } into details
 
-               // 3. now perform the grouping of the details
-               group details by details.ProductCategory
+                        // 3. now perform the grouping of the details
+                        group details by details.ProductCategory
                into g
 
-               // 4. now select the fields you want to be in the summary
-               select g
-               /*select new 
-               { 
-                Category = g.Key,
-                Items = g.ToList(), 
-                NumItems=g.Count() 
-                }*/;
+                        // 4. now select the fields you want to be in the summary
+                        select g
+                     /*select new 
+                     { 
+                      Category = g.Key,
+                      Items = g.ToList(), 
+                      NumItems=g.Count() 
+                      }*/;
 
-
-foreach (var g in invoice1)
+foreach (var g in invoiceByCategory)
 {
     System.Console.WriteLine($"Group: {g.Key}, Count: {g.Count()}");
     foreach (var item in g)
@@ -116,11 +118,52 @@ foreach (var g in invoice1)
         System.Console.WriteLine($" {item.OrderId} - {item.ProductCategory} {item.ItemName} - {item.CustomerName}");
     }
 }
-/*
-var cols = lineItems
-    .GroupBy(x=>x.Category)
-    .
-*/
+
+Console.WriteLine(" ");
+Console.WriteLine("--------------------------------------------------");
+Console.WriteLine("Linq using method based syntax");
+Console.WriteLine("--------------------------------------------------");
+var invoiceByCategory1 = lineItems
+    .Join(
+        orders,
+        lineItem => lineItem.OrderId,
+        order => order.OrderId,
+        (lineItems, orders) => new
+        {
+            orders.OrderId,
+            orders.CustomerId,
+            ProductCategory = lineItems.Category,
+            ItemName = lineItems.Item
+        }
+    ).Join(
+        customers,
+        details => details.CustomerId,
+        customer => customer.CustomerId,
+        (details, customers) => new
+        {
+            details.OrderId,
+            CustomerName = customers.Name,
+            details.ProductCategory,
+            details.ItemName,
+        }
+    )
+    .GroupBy(lineItem => lineItem.ProductCategory)
+    .Select(g => new
+    {
+        Category = g.Key,
+        Items = g.ToList(),
+        NumItems = g.Count()
+    });
+
+foreach (var g in invoiceByCategory1)
+{
+    System.Console.WriteLine($"Group: {g.Category}, Count: {g.NumItems}");
+    foreach (var item in g.Items)
+    {
+        System.Console.WriteLine($" {item.OrderId} - {item.ItemName} - {item.CustomerName}");
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////
 #region classes
 internal class Order
